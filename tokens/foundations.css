@@ -1,0 +1,782 @@
+/* ==================================================================
+   Deeploy Brand Foundations — design tokens + component primitives
+   Namespace: .db  (Deeploy Brand)
+   Source of truth: /brand/foundations.html
+   Import after tokens.css — or use standalone (includes own tokens).
+
+   @import url('../tokens/foundations.css');
+   ================================================================== */
+
+/* ------------------------------------------------------------------
+   Tokens — brand-calibrated for UI (supplements tokens.css)
+------------------------------------------------------------------ */
+:root {
+  --db-ff: 'Avenir Next', 'Avenir', 'Nunito', system-ui, sans-serif;
+  --db-ff-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --db-text-xs:   0.75rem;    /* 12 */
+  --db-text-sm:   0.8125rem;  /* 13 */
+  --db-text-base: 0.9375rem;  /* 15 */
+  --db-text-md:   1rem;       /* 16 */
+  --db-text-lg:   1.125rem;   /* 18 */
+  --db-text-xl:   1.5rem;     /* 24 */
+  --db-text-2xl:  2rem;       /* 32 */
+  --db-text-3xl:  2.75rem;    /* 44 */
+  --db-text-4xl:  4rem;       /* 64 */
+
+  --db-lh-tight:   1.05;
+  --db-lh-display: 1.1;
+  --db-lh-heading: 1.2;
+  --db-lh-ui:      1.45;
+  --db-lh-body:    1.65;
+
+  --db-sp-1:  4px;  --db-sp-2:  8px;  --db-sp-3: 12px;  --db-sp-4: 16px;
+  --db-sp-5: 24px;  --db-sp-6: 32px;  --db-sp-7: 48px;  --db-sp-8: 64px;
+  --db-sp-9: 96px;  --db-sp-10: 128px;
+
+  --db-r-sm:   3px;
+  --db-r-md:   5px;
+  --db-r-lg:   10px;
+  --db-r-xl:   16px;
+  --db-r-pill: 9999px;
+
+  --db-ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+  --db-ease-in-out:  cubic-bezier(0.65, 0, 0.35, 1);
+  --db-dur-fast: 100ms;
+  --db-dur:      180ms;
+  --db-dur-slow: 280ms;
+}
+
+/* Palette — light (white-dominant brand expression) */
+:root {
+  /* Surfaces */
+  --db-bg:            oklch(98.5% 0.003 100);   /* #fafaf8 off-white */
+  --db-bg-sunk:       oklch(96%   0.005 100);
+  --db-surface:       oklch(100%  0     0);      /* white */
+  --db-surface-hover: oklch(97.5% 0.004 100);
+  --db-border:        oklch(92%   0.006 235);
+  --db-border-strong: oklch(84%   0.010 235);
+
+  /* Text */
+  --db-text:          oklch(22%   0.037 236);   /* Blue King #0e2d3f */
+  --db-text-muted:    oklch(40%   0.022 236);
+  --db-text-subtle:   oklch(57%   0.014 236);
+  --db-text-invert:   oklch(98.5% 0.003 100);
+
+  /* Deploy Red — primary accent, CTAs, marks */
+  --db-red:           oklch(50%   0.22  13);    /* #d81d4d */
+  --db-red-hover:     oklch(44%   0.225 13);
+  --db-red-soft:      oklch(95%   0.04  13);
+  --db-red-fg:        oklch(99%   0.005 13);
+
+  /* Blue King — dark sections, navy surfaces */
+  --db-navy:          oklch(22%   0.037 236);   /* #0e2d3f */
+  --db-navy-soft:     oklch(93%   0.012 236);
+  --db-navy-mid:      oklch(30%   0.045 236);
+
+  /* Baby Blue — secondary accent */
+  --db-blue:          oklch(78%   0.07  213);   /* #8BC9DB */
+  --db-blue-soft:     oklch(93%   0.025 213);
+  --db-blue-fg:       oklch(22%   0.037 236);
+
+  /* Semantic */
+  --db-success:       oklch(52%   0.13  155);
+  --db-success-soft:  oklch(94%   0.04  155);
+  --db-danger:        oklch(56%   0.20  25);
+  --db-danger-soft:   oklch(95%   0.04  25);
+
+  /* Focus ring */
+  --db-focus-ring: 0 0 0 2px var(--db-bg), 0 0 0 4px oklch(50% 0.22 13 / 0.55);
+}
+
+/* ------------------------------------------------------------------
+   .db baseline — wrap any section in .db to get brand typography
+   and color baseline. Works against Tailwind Preflight via specificity.
+------------------------------------------------------------------ */
+.db {
+  font-family:           var(--db-ff);
+  font-size:             var(--db-text-base);
+  line-height:           var(--db-lh-ui);
+  color:                 var(--db-text);
+  background:            var(--db-bg);
+  font-weight:           400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.db h1, .db h2, .db h3, .db h4 {
+  margin: 0;
+  font-family:    var(--db-ff);
+  font-weight:    500;
+  line-height:    var(--db-lh-display);
+  letter-spacing: -0.02em;
+  color:          var(--db-text);
+}
+.db p   { margin: 0; max-width: 68ch; }
+.db hr  { border: 0; border-top: 1px solid var(--db-border); margin: 0; }
+.db code {
+  font-family:     var(--db-ff-mono);
+  font-size:       0.875em;
+  background:      var(--db-bg-sunk);
+  padding:         1px 5px;
+  border-radius:   var(--db-r-sm);
+}
+.db ::selection { background: var(--db-red-soft); color: var(--db-text); }
+
+/* ------------------------------------------------------------------
+   Typography roles
+------------------------------------------------------------------ */
+
+/* Display — campaign hero, large landing sections */
+.db .display {
+  font-family:    var(--db-ff);
+  font-weight:    700;
+  font-size:      clamp(2.75rem, 6vw, 5.5rem);
+  line-height:    var(--db-lh-tight);
+  letter-spacing: -0.03em;
+  color:          var(--db-text);
+}
+
+/* Hero title — section heroes, page headers */
+.db .hero-title {
+  font-family:    var(--db-ff);
+  font-weight:    500;
+  font-size:      var(--db-text-3xl);
+  line-height:    var(--db-lh-display);
+  letter-spacing: -0.025em;
+  color:          var(--db-text);
+}
+
+/* Page title — interior page headers */
+.db .page-title {
+  font-family:    var(--db-ff);
+  font-weight:    500;
+  font-size:      var(--db-text-2xl);
+  line-height:    1.2;
+  letter-spacing: -0.02em;
+  color:          var(--db-text);
+}
+
+/* Section title — h2 level headings within pages */
+.db .section-title {
+  font-family:    var(--db-ff);
+  font-weight:    500;
+  font-size:      var(--db-text-xl);
+  line-height:    1.25;
+  letter-spacing: -0.015em;
+  color:          var(--db-text);
+}
+
+/* Card title — h3 level, panels, cards */
+.db .card-title {
+  font-family:    var(--db-ff);
+  font-weight:    500;
+  font-size:      var(--db-text-lg);
+  line-height:    1.3;
+  letter-spacing: -0.005em;
+  color:          var(--db-text);
+}
+
+/* Lede — large intro body copy below headlines */
+.db .lede {
+  font-family:    var(--db-ff);
+  font-weight:    300;
+  font-size:      var(--db-text-lg);
+  line-height:    var(--db-lh-body);
+  letter-spacing: -0.005em;
+  color:          var(--db-text-muted);
+  max-width:      60ch;
+}
+
+/* Body — standard body text */
+.db .body {
+  font-family: var(--db-ff);
+  font-weight: 400;
+  font-size:   var(--db-text-base);
+  line-height: var(--db-lh-body);
+  color:       var(--db-text);
+  max-width:   68ch;
+}
+
+/* Small — secondary text, captions */
+.db .small {
+  font-size:   var(--db-text-sm);
+  line-height: 1.5;
+  color:       var(--db-text-muted);
+}
+
+/* Eyebrow — 11px uppercase label above a headline */
+.db .eyebrow {
+  font-family:     var(--db-ff);
+  font-weight:     500;
+  font-size:       11px;
+  letter-spacing:  0.14em;
+  text-transform:  uppercase;
+  color:           var(--db-text-subtle);
+  display:         block;
+  margin-bottom:   var(--db-sp-2);
+}
+
+/* Section kicker — red-accented label, used above section headlines */
+.db .section-kicker {
+  font-family:    var(--db-ff);
+  font-weight:    500;
+  font-size:      var(--db-text-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color:          var(--db-red);
+  display:        block;
+  margin-bottom:  var(--db-sp-2);
+}
+
+/* Stat number — large metric figure in Deploy Red */
+.db .stat-num {
+  font-family:         var(--db-ff);
+  font-weight:         900;
+  font-size:           var(--db-text-3xl);
+  line-height:         1;
+  letter-spacing:      -0.03em;
+  color:               var(--db-red);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Credential — Google Premier Partner, DELTA Method, etc. */
+.db .cred {
+  font-family:    var(--db-ff);
+  font-weight:    500;
+  font-size:      var(--db-text-sm);
+  letter-spacing: -0.005em;
+  color:          var(--db-text);
+}
+
+/* ------------------------------------------------------------------
+   Masthead block (page / section editorial header)
+------------------------------------------------------------------ */
+.db .masthead {
+  display:         grid;
+  grid-template-columns: 1fr auto;
+  gap:             var(--db-sp-5);
+  align-items:     end;
+  padding-bottom:  var(--db-sp-6);
+  border-bottom:   1px solid var(--db-border);
+  margin-bottom:   var(--db-sp-7);
+}
+.db .masthead .lede { margin-top: var(--db-sp-3); }
+@media (max-width: 640px) {
+  .db .masthead { grid-template-columns: 1fr; }
+}
+
+/* ------------------------------------------------------------------
+   Section head (kicker + title + optional note)
+------------------------------------------------------------------ */
+.db .section-head {
+  display:         grid;
+  grid-template-columns: 1fr auto;
+  align-items:     baseline;
+  gap:             var(--db-sp-5);
+  margin-bottom:   var(--db-sp-6);
+}
+.db .section-head .section-title { margin-top: var(--db-sp-2); }
+.db .section-note {
+  max-width:   32ch;
+  font-size:   var(--db-text-sm);
+  color:       var(--db-text-subtle);
+  line-height: var(--db-lh-body);
+  text-align:  right;
+}
+@media (max-width: 640px) {
+  .db .section-head { grid-template-columns: 1fr; }
+  .db .section-note { text-align: left; max-width: 60ch; }
+}
+
+/* ------------------------------------------------------------------
+   Buttons
+------------------------------------------------------------------ */
+.db .btn {
+  --btn-bg:     var(--db-surface);
+  --btn-fg:     var(--db-text);
+  --btn-border: var(--db-border-strong);
+  display:         inline-flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             var(--db-sp-2);
+  padding:         10px 20px;
+  font-family:     var(--db-ff);
+  font-weight:     500;
+  font-size:       var(--db-text-sm);
+  letter-spacing:  -0.005em;
+  border-radius:   var(--db-r-md);
+  background:      var(--btn-bg);
+  color:           var(--btn-fg);
+  border:          1px solid var(--btn-border);
+  cursor:          pointer;
+  white-space:     nowrap;
+  text-decoration: none;
+  transition:
+    background  var(--db-dur) var(--db-ease-out),
+    color       var(--db-dur) var(--db-ease-out),
+    border-color var(--db-dur) var(--db-ease-out),
+    transform   var(--db-dur-fast) var(--db-ease-out);
+}
+.db .btn:hover  { background: var(--db-surface-hover); }
+.db .btn:active { transform: translateY(0.5px); }
+.db .btn:focus-visible { outline: 0; box-shadow: var(--db-focus-ring); }
+.db .btn:disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+
+/* Primary — Deploy Red, main CTA */
+.db .btn--primary {
+  --btn-bg:     var(--db-red);
+  --btn-fg:     var(--db-red-fg);
+  --btn-border: var(--db-red);
+  font-weight:  700;
+}
+.db .btn--primary:hover {
+  background:   var(--db-red-hover);
+  border-color: var(--db-red-hover);
+}
+
+/* Secondary — navy outline */
+.db .btn--secondary {
+  --btn-bg:     transparent;
+  --btn-fg:     var(--db-text);
+  --btn-border: var(--db-text);
+}
+.db .btn--secondary:hover {
+  background: color-mix(in oklch, var(--db-text) 6%, transparent);
+}
+
+/* Ghost — no background or border */
+.db .btn--ghost {
+  --btn-bg:     transparent;
+  --btn-border: transparent;
+  --btn-fg:     var(--db-text-muted);
+}
+.db .btn--ghost:hover { color: var(--db-text); background: var(--db-surface-hover); }
+
+/* Large CTA — landing page hero button */
+.db .btn--lg {
+  padding:       14px 32px;
+  font-size:     var(--db-text-md);
+  border-radius: var(--db-r-lg);
+  font-weight:   700;
+  letter-spacing: -0.01em;
+}
+
+/* Small utility button */
+.db .btn--sm {
+  padding:       6px 12px;
+  font-size:     var(--db-text-xs);
+  border-radius: var(--db-r-sm);
+}
+
+/* Icon-only square button */
+.db .btn--icon { padding: 10px; }
+.db .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+/* Inverted — for use on dark (navy) sections */
+.db .btn--invert {
+  --btn-bg:     oklch(100% 0 0 / 0.12);
+  --btn-fg:     oklch(99% 0.003 100);
+  --btn-border: oklch(100% 0 0 / 0.3);
+}
+.db .btn--invert:hover {
+  background: oklch(100% 0 0 / 0.2);
+  border-color: oklch(100% 0 0 / 0.5);
+}
+
+/* ------------------------------------------------------------------
+   Form fields (marketing lead-capture style — generous sizing)
+------------------------------------------------------------------ */
+.db .field { display: flex; flex-direction: column; gap: 6px; }
+.db .field > label {
+  font-family:    var(--db-ff);
+  font-weight:    500;
+  font-size:      var(--db-text-xs);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color:          var(--db-text-muted);
+}
+.db .field-help  { font-size: var(--db-text-xs); color: var(--db-text-subtle); }
+.db .field-error { font-size: var(--db-text-xs); color: var(--db-danger); }
+
+.db .input,
+.db .select,
+.db .textarea {
+  display:       block;
+  width:         100%;
+  padding:       11px 14px;
+  background:    var(--db-surface);
+  border:        1px solid var(--db-border-strong);
+  border-radius: var(--db-r-md);
+  color:         var(--db-text);
+  font-family:   var(--db-ff);
+  font-size:     var(--db-text-base);
+  line-height:   1.4;
+  transition:
+    border-color var(--db-dur) var(--db-ease-out),
+    box-shadow   var(--db-dur) var(--db-ease-out);
+}
+.db .input::placeholder,
+.db .textarea::placeholder { color: var(--db-text-subtle); }
+.db .input:hover,
+.db .select:hover,
+.db .textarea:hover { border-color: var(--db-text-subtle); }
+.db .input:focus,
+.db .select:focus,
+.db .textarea:focus {
+  outline:      0;
+  border-color: var(--db-red);
+  box-shadow:   0 0 0 3px oklch(50% 0.22 13 / 0.15);
+}
+.db .input[aria-invalid="true"],
+.db .textarea[aria-invalid="true"] { border-color: var(--db-danger); }
+
+.db .textarea {
+  min-height: 100px;
+  resize:     vertical;
+}
+.db .select {
+  appearance:           none;
+  background-image:     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23708090' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat:    no-repeat;
+  background-position:  right 12px center;
+  padding-right:        34px;
+}
+
+/* ------------------------------------------------------------------
+   Badges — status tags, credential labels
+------------------------------------------------------------------ */
+.db .badge {
+  display:      inline-flex;
+  align-items:  center;
+  gap:          5px;
+  padding:      3px 9px;
+  border-radius: var(--db-r-sm);
+  font-family:  var(--db-ff);
+  font-weight:  500;
+  font-size:    11px;
+  letter-spacing: 0.02em;
+  background:   var(--db-bg-sunk);
+  color:        var(--db-text-muted);
+  border:       1px solid var(--db-border);
+  white-space:  nowrap;
+}
+
+/* Credential — Premier Partner, DELTA Method */
+.db .badge--cred {
+  background:   var(--db-navy-soft);
+  color:        var(--db-navy);
+  border-color: color-mix(in oklch, var(--db-navy) 20%, transparent);
+  font-weight:  700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size:    10px;
+}
+
+/* Accent red — Deploy Red pill */
+.db .badge--accent {
+  background:   var(--db-red-soft);
+  color:        var(--db-red);
+  border-color: color-mix(in oklch, var(--db-red) 25%, transparent);
+}
+
+/* Info blue */
+.db .badge--blue {
+  background:   var(--db-blue-soft);
+  color:        var(--db-blue-fg);
+  border-color: color-mix(in oklch, var(--db-blue) 30%, transparent);
+}
+
+/* Status pips */
+.db .badge .pip { width: 5px; height: 5px; border-radius: 50%; background: currentcolor; }
+
+/* ------------------------------------------------------------------
+   Stat block — large metric with label + optional context
+------------------------------------------------------------------ */
+.db .stat-block {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--db-sp-1);
+}
+.db .stat-block .stat-value {
+  font-family:         var(--db-ff);
+  font-weight:         700;
+  font-size:           var(--db-text-3xl);
+  line-height:         1;
+  letter-spacing:      -0.035em;
+  color:               var(--db-red);
+  font-variant-numeric: tabular-nums;
+}
+.db .stat-block .stat-label {
+  font-family: var(--db-ff);
+  font-weight: 500;
+  font-size:   var(--db-text-sm);
+  color:       var(--db-text);
+  letter-spacing: -0.005em;
+}
+.db .stat-block .stat-context {
+  font-size: var(--db-text-xs);
+  color:     var(--db-text-subtle);
+}
+
+/* Stat grid — auto-responsive row of stat blocks */
+.db .stat-grid {
+  display:               grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap:                   var(--db-sp-6) var(--db-sp-8);
+}
+
+/* ------------------------------------------------------------------
+   Service list — numbered, deliberate (not card grid)
+------------------------------------------------------------------ */
+.db .service-list {
+  list-style: none;
+  margin:     0;
+  padding:    0;
+  display:    flex;
+  flex-direction: column;
+}
+.db .service-list li {
+  display:       grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap:           var(--db-sp-4);
+  align-items:   start;
+  padding:       var(--db-sp-5) 0;
+  border-bottom: 1px solid var(--db-border);
+}
+.db .service-list li:first-child { border-top: 1px solid var(--db-border); }
+.db .service-list .svc-num {
+  font-family:         var(--db-ff);
+  font-weight:         700;
+  font-size:           var(--db-text-sm);
+  color:               var(--db-red);
+  letter-spacing:      -0.01em;
+  font-variant-numeric: tabular-nums;
+  padding-top:         2px;
+}
+.db .service-list .svc-name {
+  font-family: var(--db-ff);
+  font-weight: 500;
+  font-size:   var(--db-text-md);
+  color:       var(--db-text);
+  letter-spacing: -0.01em;
+}
+.db .service-list .svc-desc {
+  grid-column: 2;
+  font-size:   var(--db-text-sm);
+  color:       var(--db-text-muted);
+  line-height: var(--db-lh-body);
+  margin-top:  var(--db-sp-1);
+}
+
+/* ------------------------------------------------------------------
+   Testimonial / quote card
+------------------------------------------------------------------ */
+.db .quote-card {
+  padding:       var(--db-sp-7) var(--db-sp-6);
+  background:    var(--db-surface);
+  border:        1px solid var(--db-border);
+  border-radius: var(--db-r-xl);
+}
+.db .quote-card blockquote {
+  margin:         0 0 var(--db-sp-5);
+  font-family:    var(--db-ff);
+  font-weight:    300;
+  font-size:      var(--db-text-lg);
+  line-height:    var(--db-lh-body);
+  letter-spacing: -0.01em;
+  color:          var(--db-text);
+}
+.db .quote-card .quote-mark {
+  font-family: var(--db-ff);
+  font-weight: 700;
+  font-size:   3rem;
+  line-height: 1;
+  color:       var(--db-red);
+  display:     block;
+  margin-bottom: var(--db-sp-3);
+}
+.db .quote-card .attribution {
+  display:     flex;
+  align-items: center;
+  gap:         var(--db-sp-3);
+}
+.db .quote-card .attr-name {
+  font-family: var(--db-ff);
+  font-weight: 500;
+  font-size:   var(--db-text-sm);
+  color:       var(--db-text);
+  letter-spacing: -0.005em;
+}
+.db .quote-card .attr-role {
+  font-size: var(--db-text-xs);
+  color:     var(--db-text-subtle);
+  margin-top: 1px;
+}
+
+/* ------------------------------------------------------------------
+   Dark section — navy background utility
+   Wrap any section in .db .dark-section for the inverted treatment
+------------------------------------------------------------------ */
+.db .dark-section {
+  background: var(--db-navy);
+  color:      var(--db-text-invert);
+}
+.db .dark-section .section-kicker { color: var(--db-blue); }
+.db .dark-section .section-title,
+.db .dark-section .hero-title,
+.db .dark-section .page-title,
+.db .dark-section .display { color: var(--db-text-invert); }
+.db .dark-section .lede { color: oklch(78% 0.015 236); }
+.db .dark-section .eyebrow { color: oklch(65% 0.018 236); }
+.db .dark-section .stat-block .stat-label { color: oklch(80% 0.015 236); }
+.db .dark-section .stat-block .stat-context { color: oklch(65% 0.012 236); }
+.db .dark-section .badge--cred {
+  background:   oklch(30% 0.04 236);
+  color:        var(--db-blue);
+  border-color: oklch(40% 0.04 236);
+}
+.db .dark-section hr { border-top-color: oklch(35% 0.03 236); }
+
+/* ------------------------------------------------------------------
+   Panel (generic bordered container)
+------------------------------------------------------------------ */
+.db .panel {
+  border:        1px solid var(--db-border);
+  border-radius: var(--db-r-xl);
+  background:    var(--db-surface);
+  overflow:      hidden;
+}
+.db .panel-head {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  gap:             var(--db-sp-4);
+  padding:         var(--db-sp-4) var(--db-sp-5);
+  border-bottom:   1px solid var(--db-border);
+}
+.db .panel-title {
+  font-family: var(--db-ff);
+  font-weight: 500;
+  font-size:   var(--db-text-md);
+  letter-spacing: -0.01em;
+  color:       var(--db-text);
+}
+.db .panel-body { padding: var(--db-sp-5); }
+.db .panel-body.flush { padding: 0; }
+
+/* ------------------------------------------------------------------
+   Skeleton loader
+------------------------------------------------------------------ */
+.db .skeleton {
+  display:    inline-block;
+  background: linear-gradient(
+    90deg,
+    var(--db-bg-sunk)    0%,
+    var(--db-surface-hover) 50%,
+    var(--db-bg-sunk)    100%
+  );
+  background-size:  200% 100%;
+  border-radius:    3px;
+  animation:        db-shimmer 1400ms ease-in-out infinite;
+}
+@keyframes db-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ------------------------------------------------------------------
+   Pixel ornaments — brand mark motif (descending squares)
+------------------------------------------------------------------ */
+
+/* Pixel loader — 4 squares bouncing sequentially */
+.db .pixel-loader {
+  display:        inline-flex;
+  gap:            4px;
+  vertical-align: middle;
+  align-items:    flex-end;
+}
+.db .pixel-loader span {
+  background:    var(--db-red);
+  border-radius: 1.5px;
+  animation:     db-pixel-fall 1100ms var(--db-ease-in-out) infinite;
+}
+.db .pixel-loader span:nth-child(1) { width: 10px; height: 10px; animation-delay: 0ms; }
+.db .pixel-loader span:nth-child(2) { width:  8px; height:  8px; animation-delay: 100ms; }
+.db .pixel-loader span:nth-child(3) { width:  6px; height:  6px; animation-delay: 200ms; }
+.db .pixel-loader span:nth-child(4) { width:  4px; height:  4px; animation-delay: 300ms; }
+@keyframes db-pixel-fall {
+  0%, 40%, 100% { transform: translateY(0);    opacity: 0.35; }
+  20%            { transform: translateY(-5px); opacity: 1; }
+}
+
+/* Pixel mark — decorative brand ornament grid */
+.db .pixel-mark {
+  display:               grid;
+  grid-template-columns: repeat(4, 8px);
+  grid-template-rows:    repeat(5, 8px);
+  gap:                   2.5px;
+}
+.db .pixel-mark span {
+  background:    var(--db-red);
+  border-radius: 1.5px;
+  animation:     db-pixel-fade 2800ms var(--db-ease-out) infinite;
+}
+.db .pixel-mark span.empty { background: transparent; animation: none; }
+@keyframes db-pixel-fade {
+  0%, 50%    { opacity: 1; }
+  80%, 100%  { opacity: 0.15; }
+}
+
+/* Cascade animation — descending-bars motif (echoes logo squares) */
+.db .cascade {
+  display:     inline-flex;
+  gap:         3px;
+  align-items: flex-end;
+}
+.db .cascade-bar {
+  background:    var(--db-red);
+  border-radius: 1.5px;
+  animation:     db-cascade 900ms var(--db-ease-out) infinite;
+}
+.db .cascade-bar:nth-child(1) { width: 4px; height: 16px; animation-delay:   0ms; }
+.db .cascade-bar:nth-child(2) { width: 4px; height: 12px; animation-delay: 100ms; }
+.db .cascade-bar:nth-child(3) { width: 4px; height:  8px; animation-delay: 200ms; }
+.db .cascade-bar:nth-child(4) { width: 4px; height:  4px; animation-delay: 300ms; }
+@keyframes db-cascade {
+  0%, 100% { opacity: 0.25; transform: scaleY(1); }
+  50%      { opacity: 1;    transform: scaleY(1.15); }
+}
+
+/* Reduced motion — honour accessibility preference */
+@media (prefers-reduced-motion: reduce) {
+  .db .skeleton,
+  .db .pixel-loader span,
+  .db .pixel-mark span,
+  .db .cascade-bar { animation: none; }
+}
+
+/* ------------------------------------------------------------------
+   Page shell
+------------------------------------------------------------------ */
+.db-page {
+  min-height: 100%;
+  padding:    var(--db-sp-7) var(--db-sp-6) var(--db-sp-10);
+  background: var(--db-bg);
+  color:      var(--db-text);
+  font-family: var(--db-ff);
+}
+
+/* ------------------------------------------------------------------
+   Utilities
+------------------------------------------------------------------ */
+.db .stack   > * + * { margin-top: var(--db-sp-4); }
+.db .stack-sm > * + * { margin-top: var(--db-sp-3); }
+.db .stack-lg > * + * { margin-top: var(--db-sp-6); }
+.db .stack-xl > * + * { margin-top: var(--db-sp-8); }
+.db .row     { display: flex; gap: var(--db-sp-3); align-items: center; flex-wrap: wrap; }
+.db .cluster { display: flex; gap: var(--db-sp-4); flex-wrap: wrap; align-items: center; }
+.db .split   { display: flex; justify-content: space-between; align-items: center; gap: var(--db-sp-4); }
+.db .center  { text-align: center; margin-inline: auto; }
+.db .muted   { color: var(--db-text-muted); }
+.db .subtle  { color: var(--db-text-subtle); }
+.db .num     { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }

@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "brand": "Deeploy",
+    "version": "1.0.0",
+    "updated": "2026-04-17"
+  },
+  "landing-pages": {
+    "strategy-call": {
+      "url-pattern": "/strategy-call",
+      "goal": "Capture strategy call bookings",
+      "structure": ["hero-with-form", "social-proof", "premier-partner-badge", "trust-signals"],
+      "no-navigation": true,
+      "notes": "Remove main nav. Single CTA. Above-fold form."
+    },
+    "free-audit": {
+      "url-pattern": "/free-audit",
+      "goal": "Capture audit requests",
+      "structure": ["hero", "audit-scope", "form", "case-study-snippet"],
+      "no-navigation": true
+    },
+    "vertical-nonprofit": { "url-pattern": "/nonprofit", "audience": "Nonprofits, Google Ad Grants" },
+    "vertical-ecommerce": { "url-pattern": "/ecommerce", "audience": "E-commerce brands" },
+    "vertical-education": { "url-pattern": "/education", "audience": "Education institutions" }
+  },
+  "performance-targets": {
+    "lcp": "< 2.5s",
+    "load-time": "< 3s",
+    "mobile-priority": "60%+ of Meta clicks are mobile; LinkedIn 40%"
+  },
+  "print": {
+    "business-card": {
+      "w-mm": 85, "h-mm": 55,
+      "bleed-mm": 3,
+      "safe-mm": 5,
+      "colors": "CMYK. Deploy Red: C0 M87 Y64 K15. Blue King: C78 M29 Y0 K75.",
+      "notes": "Use logo-black.svg (Blue King) on white card. Or logo-white.svg on Navy card."
+    },
+    "letterhead": {
+      "w-mm": 215.9, "h-mm": 279.4,
+      "format": "US Letter",
+      "logo-position": "Top-left, 20mm from edges",
+      "notes": "logo-black.svg on white. Blue King footer rule."
+    },
+    "presentation-slide": {
+      "w-px": 1920, "h-px": 1080,
+      "format": "16:9 widescreen",
+      "notes": "Dark slides: Navy bg, logo-white.svg. Light slides: white bg, logo-primary.svg. Never mix on same deck."
+    }
+  },
+  "email": {
+    "header-banner": { "w": 600, "h": 120, "notes": "Logo left, tagline right. White background." },
+    "newsletter-width": 600,
+    "safe-fonts": "Arial, Helvetica, sans-serif (Avenir not universally available in email clients)",
+    "cta-button": {
+      "bg": "#d81d4d",
+      "text": "#ffffff",
+      "height": "48px",
+      "padding": "0 32px",
+      "border-radius": "4px",
+      "font-weight": "bold"
+    }
+  },
+  "content-pillars": {
+    "credential-authority": {
+      "weight": "30%",
+      "themes": ["Google Premier Partner", "top 3% globally", "15+ years", "200+ clients", "35+ countries", "DELTA Method"]
+    },
+    "ai-human-proof":      { "weight": "25%", "themes": ["AI + human hybrid", "results only possible with both"] },
+    "pain-point":          { "weight": "20%", "themes": ["unclear ROI", "black-box reporting", "guessing ad spend"] },
+    "social-proof":        { "weight": "15%", "themes": ["client results", "case studies", "industries served"] },
+    "offer-cta":           { "weight": "10%", "themes": ["free strategy call", "no-obligation", "no long-term contracts"] }
+  },
+  "headline-formulas": [
+    "Credential-led: 'Google Premier Partner. Top 3% Worldwide.'",
+    "Result-led: '200+ clients. 35+ countries. Measurable results.'",
+    "Pain-led: 'Still guessing which ad spend is working?'",
+    "Innovation-led: 'The agency doing GEO before your competitors know it exists.'",
+    "Equation-led: 'Human Talent + AI Tokens = Measurable Growth'"
+  ]
+}

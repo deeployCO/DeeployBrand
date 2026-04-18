@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deeploy — Brand System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../tokens/tokens.css">
+  <style>
+    /* Avenir is the brand font — load via Adobe Fonts in production.
+       Nunito (loaded above) is the web fallback. */
+
+    /* ─── Layout ─────────────────────────────────────────────────── */
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-primary);
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: var(--space-margin);
+    }
+
+    /* ─── Navigation ─────────────────────────────────────────────── */
+
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: var(--z-overlay);
+      padding: var(--space-4) var(--space-margin);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: oklch(99% 0.004 215 / 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-separator);
+    }
+
+    .nav-mark {
+      height: 32px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--space-8);
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-2);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-widest);
+      transition: color var(--duration-fast) var(--ease-out-expo);
+    }
+
+    .nav-links a:hover { color: var(--color-red); }
+
+    .nav-version {
+      font-size: var(--text-xs);
+      color: var(--color-text-3);
+      font-weight: var(--font-weight-book);
+      letter-spacing: var(--tracking-wide);
+    }
+
+    /* ─── Section base ───────────────────────────────────────────── */
+
+    .section {
+      padding-block: var(--space-section);
+      border-top: 1px solid var(--color-separator);
+    }
+
+    .section:first-of-type { border-top: none; }
+
+    .section-label {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-6);
+      margin-bottom: var(--space-12);
+    }
+
+    .section-num {
+      font-size: var(--text-6xl);
+      font-weight: var(--font-weight-light);
+      color: var(--color-separator);
+      line-height: 1;
+      letter-spacing: var(--tracking-tight);
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: var(--text-3xl);
+      font-weight: var(--font-weight-black);
+      letter-spacing: var(--tracking-tight);
+      line-height: var(--leading-tight);
+    }
+
+    .section-desc {
+      font-size: var(--text-md);
+      color: var(--color-text-2);
+      max-width: var(--measure);
+      line-height: var(--leading-relaxed);
+      margin-top: var(--space-4);
+    }
+
+    /* ─── Cover ──────────────────────────────────────────────────── */
+
+    .cover {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 80px;
+      padding-bottom: var(--space-24);
+    }
+
+    .cover-eyebrow {
+      font-size: var(--text-xs);
+      font-weight: var(--font-weight-medium);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-widest);
+      color: var(--color-text-3);
+      margin-bottom: var(--space-12);
+    }
+
+    .cover-logo {
+      width: min(640px, 80vw);
+      margin-bottom: var(--space-12);
+    }
+
+    .cover-rule {
+      width: 48px;
+      height: 3px;
+      background: var(--color-red);
+      margin-bottom: var(--space-8);
+    }
+
+    .cover-tagline {
+      font-size: clamp(var(--text-xl), 3vw, var(--text-3xl));
+      font-weight: var(--font-weight-light);
+      color: var(--color-text-2);
+      max-width: 640px;
+      line-height: var(--leading-snug);
+      letter-spacing: var(--tracking-tight);
+    }
+
+    .cover-meta {
+      margin-top: var(--space-24);
+      display: flex;
+      gap: var(--space-12);
+    }
+
+    .cover-stat {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    .cover-stat-num {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-weight-black);
+      color: var(--color-text);
+      letter-spacing: var(--tracking-tight);
+    }
+
+    .cover-stat-label {
+      font-size: var(--text-xs);
+      color: var(--color-text-3);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-widest);
+      font-weight: var(--font-weight-medium);
+    }
+
+    /* ─── Logo section ───────────────────────────────────────────── */
+
+    .logo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+      margin-top: var(--space-12);
+    }
+
+    @media (max-width: 720px) {
+      .logo-grid { grid-template-columns: 1fr; }
+    }
+
+    .logo-swatch {
+      padding: var(--space-12) var(--space-8);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .logo-swatch-light { background: var(--color-surface); }
+    .logo-swatch-dark  { background: var(--color-navy); }
+    .logo-swatch-photo {
+      background: var(--color-navy);
+      background-image: linear-gradient(
+        160deg,
+        oklch(19% 0.055 222) 0%,
+        oklch(24% 0.055 222) 100%
+      );
+    }
+
+    .logo-swatch img {
+      height: 36px;
+      width: auto;
+    }
+
+    .logo-swatch-name {
+      font-size: var(--text-xs);
+      font-weight: var(--font-weight-medium);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-widest);
+    }
+
+    .logo-swatch-light .logo-swatch-name { color: var(--color-text-3); }
+    .logo-swatch-dark .logo-swatch-name,
+    .logo-swatch-photo .logo-swatch-name { color: oklch(60% 0.04 215); }
+
+    .logo-swatch-desc {
+      font-size: var(--text-sm);
+    }
+    .logo-swatch-light .logo-swatch-desc { color: var(--color-text-2); }
+    .logo-swatch-dark .logo-swatch-desc,
+    .logo-swatch-photo .logo-swatch-desc { color: oklch(65% 0.04 215); }
+
+    .logo-mark-row {
+      margin-top: var(--space-4);
+      display: flex;
+      gap: var(--space-4);
+    }
+
+    .logo-mark-swatch {
+      padding: var(--space-8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .logo-mark-swatch img { height: 48px; width: auto; }
+
+    .logo-rules {
+      margin-top: var(--space-12);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-8);
+    }
+
+    .logo-rule-item { padding-block: var(--space-6); }
+
+    .logo-rule-item + .logo-rule-item {
+      border-top: 1px solid var(--color-separator);
+    }
+
+    .logo-rule-head {
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-heavy);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wider);
+      margin-bottom: var(--space-2);
+    }
+
+    .logo-rule-head.allow { color: var(--color-text); }
+    .logo-rule-head.deny  { color: var(--color-red); }
+
+    .logo-rule-body {
+      font-size: var(--text-sm);
+      color: var(--color-text-2);
+      line-height: var(--leading-relaxed);
+    }
+
+    /* ─── Color section ──────────────────────────────────────────── */
+
+    .color-strips {
+      margin-top: var(--space-12);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .color-strip {
+      display: flex;
+      align-items: center;
+      gap: var(--space-8);
+      padding: var(--space-6) var(--space-8);
+      transition: transform var(--duration-fast) var(--ease-out-expo);
+    }
+
+    .color-strip:hover { transform: translateX(6px); }
+
+    .color-strip-swatch {
+      width: 80px;
+      height: 80px;
+      flex-shrink: 0;
+    }
+
+    .color-strip-info { flex: 1; }
+
+    .color-strip-name {
+      font-size: var(--text-xl);
+      font-weight: var(--font-weight-black);
+      letter-spacing: var(--tracking-tight);
+      line-height: 1;
+      margin-bottom: var(--space-2);
+    }
+
+    .color-strip-hex {
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-medium);
+      letter-spacing: var(--tracking-wide);
+      margin-bottom: var(--space-3);
+    }
+
+    .color-strip-values {
+      font-size: var(--text-xs);
+      color: var(--color-text-3);
+      letter-spacing: var(--tracking-wide);
+      line-height: var(--leading-relaxed);
+    }
+
+    .color-strip-usage {
+      font-size: var(--text-sm);
+      max-width: 400px;
+      line-height: var(--leading-relaxed);
+    }
+
+    /* Strip-specific colors */
+    .strip-red    { background: var(--color-red); }
+    .strip-navy   { background: var(--color-navy); }
+    .strip-blue   { background: var(--color-blue); }
+    .strip-white  { background: #fff; }
+    .strip-offwht { background: var(--color-bg); }
+
+    .strip-red .color-strip-name,
+    .strip-red .color-strip-hex,
+    .strip-red .color-strip-values,
+    .strip-red .color-strip-usage { color: #fff; }
+
+    .strip-navy .color-strip-name,
+    .strip-navy .color-strip-hex,
+    .strip-navy .color-strip-values,
+    .strip-navy .color-strip-usage { color: #fff; }
+
+    .strip-navy .color-strip-values { color: oklch(65% 0.04 215); }
+    .strip-navy .color-strip-usage  { color: oklch(72% 0.04 215); }
+
+    .strip-red .color-strip-values  { color: oklch(80% 0.1 4); }
+    .strip-red .color-strip-usage   { color: oklch(90% 0.07 4); }
+
+    /* Color ratio bar */
+    .color-ratio {
+      margin-top: var(--space-12);
+      padding-top: var(--space-8);
+      border-top: 1px solid var(--color-separator);
+    }
+
+    .color-ratio-label {
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-widest);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-3);
+      margin-bottom: var(--space-4);
+    }
+
+    .color-ratio-bar {
+      display: flex;
+      height: 12px;
+      overflow: hidden;
+    }
+
+    .color-ratio-bar span { display: block; }
+
+    .ratio-white { flex: 6; background: var(--color-separator); }
+    .ratio-navy  { flex: 3; background: var(--color-navy); }
+    .ratio-red   { flex: 1; background: var(--color-red); }
+
+    .color-ratio-legend {
+      display: flex;
+      gap: var(--space-8);
+      margin-top: var(--space-4);
+    }
+
+    .ratio-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-xs);
+      color: var(--color-text-2);
+      letter-spacing: var(--tracking-wide);
+    }
+
+    .ratio-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ─── Typography section ─────────────────────────────────────── */
+
+    .type-specimen {
+      margin-top: var(--space-12);
+    }
+
+    .type-display {
+      font-size: clamp(48px, 8vw, var(--text-5xl));
+      font-weight: var(--font-weight-black);
+      letter-spacing: var(--tracking-tight);
+      line-height: var(--leading-tight);
+      color: var(--color-text);
+    }
+
+    .type-alphabet {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-weight-book);
+      color: var(--color-text-2);
+      line-height: var(--leading-relaxed);
+      letter-spacing: var(--tracking-wide);
+      margin-top: var(--space-8);
+      margin-bottom: var(--space-12);
+      word-break: break-all;
+    }
+
+    .type-scale {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--color-separator);
+    }
+
+    .type-scale-row {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-8);
+      padding-block: var(--space-6);
+      border-bottom: 1px solid var(--color-separator);
+    }
+
+    .type-scale-meta {
+      width: 140px;
+      flex-shrink: 0;
+    }
+
+    .type-scale-token {
+      font-size: var(--text-xs);
+      font-weight: var(--font-weight-medium);
+      letter-spacing: var(--tracking-wide);
+      color: var(--color-text-3);
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .type-scale-px {
+      font-size: var(--text-xs);
+      color: var(--color-text-3);
+      margin-top: 2px;
+    }
+
+    .type-scale-sample { flex: 1; }
+
+    .type-weights {
+      margin-top: var(--space-12);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-8);
+    }
+
+    .type-weight-item {
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--color-separator);
+    }
+
+    .type-weight-name {
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-widest);
+      color: var(--color-text-3);
+      margin-bottom: var(--space-4);
+    }
+
+    .type-weight-sample {
+      font-size: var(--text-xl);
+      line-height: var(--leading-snug);
+    }
+
+    /* ─── Spacing section ────────────────────────────────────────── */
+
+    .space-scale {
+      margin-top: var(--space-12);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .space-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-6);
+    }
+
+    .space-token {
+      width: 120px;
+      flex-shrink: 0;
+      font-size: var(--text-xs);
+      font-family: 'Courier New', Courier, monospace;
+      color: var(--color-text-3);
+      letter-spacing: var(--tracking-wide);
+    }
+
+    .space-bar-wrap { flex: 1; display: flex; align-items: center; gap: var(--space-4); }
+
+    .space-bar {
+      height: 8px;
+      background: var(--color-navy);
+      flex-shrink: 0;
+      transition: width var(--duration-base) var(--ease-out-expo);
+    }
+
+    .space-value {
+      font-size: var(--text-xs);
+      color: var(--color-text-3);
+      letter-spacing: var(--tracking-wide);
+      white-space: nowrap;
+    }
+
+    /* ─── Voice section ──────────────────────────────────────────── */
+
+    .voice-axes {
+      margin-top: var(--space-12);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .voice-axis {
+      padding-block: var(--space-4);
+      border-bottom: 1px solid var(--color-separator);
+    }
+
+    .voice-axis-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: var(--space-3);
+    }
+
+    .voice-axis-label {
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wider);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-3);
+    }
+
+    .voice-axis-track {
+      height: 3px;
+      background: var(--color-separator);
+      position: relative;
+    }
+
+    .voice-axis-fill {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      background: var(--color-navy);
+    }
+
+    .voice-axis-marker {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px;
+      height: 10px;
+      background: var(--color-red);
+      border-radius: 50%;
+    }
+
+    .voice-pillars {
+      margin-top: var(--space-12);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-8);
+      padding-top: var(--space-8);
+      border-top: 1px solid var(--color-separator);
+    }
+
+    .voice-pillar {}
+
+    .voice-pillar-pct {
+      font-size: var(--text-3xl);
+      font-weight: var(--font-weight-black);
+      letter-spacing: var(--tracking-tight);
+      line-height: 1;
+      color: var(--color-text);
+      margin-bottom: var(--space-3);
+    }
+
+    .voice-pillar-name {
+      font-size: var(--text-sm);
+      font-weight: var(--font-weight-heavy);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wider);
+      color: var(--color-text);
+      margin-bottom: var(--space-3);
+    }
+
+    .voice-pillar-desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-2);
+      line-height: var(--leading-relaxed);
+      max-width: var(--measure);
+    }
+
+    /* ─── Digital / Social section ───────────────────────────────── */
+
+    .format-grid {
+      margin-top: var(--space-12);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-4);
+    }
+
+    .format-card {
+      padding: var(--space-6);
+      background: var(--color-surface);
+    }
+
+    .format-ratio {
+      font-size: var(--text-3xl);
+      font-weight: var(--font-weight-black);
+      letter-spacing: var(--tracking-tight);
+      line-height: 1;
+      color: var(--color-text);
+      margin-bottom: var(--space-2);
+    }
+
+    .format-platform {
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-widest);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-red);
+      margin-bottom: var(--space-3);
+    }
+
+    .format-dims {
+      font-size: var(--text-sm);
+      color: var(--color-text-2);
+      font-weight: var(--font-weight-medium);
+      margin-bottom: var(--space-2);
+    }
+
+    .format-note {
+      font-size: var(--text-xs);
+      color: var(--color-text-3);
+      line-height: var(--leading-relaxed);
+    }
+
+    /* ─── Dark section ───────────────────────────────────────────── */
+
+    .section-dark {
+      background: var(--color-navy);
+      padding-block: var(--space-section);
+    }
+
+    .section-dark .section-num { color: oklch(30% 0.04 222); }
+    .section-dark .section-title { color: var(--color-white); }
+    .section-dark .section-desc { color: oklch(65% 0.04 215); }
+    .section-dark .section { border-top-color: oklch(28% 0.04 222); }
+
+    /* ─── Footer ─────────────────────────────────────────────────── */
+
+    .footer {
+      padding-block: var(--space-16);
+      border-top: 1px solid var(--color-separator);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-8);
+    }
+
+    .footer-logo { height: 24px; width: auto; opacity: 0.4; }
+
+    .footer-text {
+      font-size: var(--text-xs);
+      color: var(--color-text-3);
+      letter-spacing: var(--tracking-wide);
+    }
+
+    /* ─── Responsive ─────────────────────────────────────────────── */
+
+    @media (max-width: 480px) {
+      .nav-links { display: none; }
+      .cover-meta { flex-wrap: wrap; gap: var(--space-6); }
+      .logo-grid { grid-template-columns: 1fr; }
+      .color-strip { flex-direction: column; align-items: flex-start; }
+      .color-strip-swatch { width: 100%; height: 48px; }
+      .footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <img src="../assets/logos/mark.svg" alt="Deeploy" class="nav-mark">
+    <ul class="nav-links">
+      <li><a href="#logo">Logo</a></li>
+      <li><a href="#color">Color</a></li>
+      <li><a href="#type">Type</a></li>
+      <li><a href="#space">Space</a></li>
+      <li><a href="#voice">Voice</a></li>
+      <li><a href="#digital">Digital</a></li>
+    </ul>
+    <span class="nav-version">v1.0 · 2026</span>
+  </nav>
+
+  <main>
+
+    <!-- ── Cover ──────────────────────────────────────────────────── -->
+    <div class="container">
+      <section class="cover" id="cover">
+        <p class="cover-eyebrow">Deeploy · Brand System</p>
+        <img src="../assets/logos/logo-primary.svg" alt="Deeploy" class="cover-logo">
+        <div class="cover-rule"></div>
+        <p class="cover-tagline">Digital marketing powered by<br>Human + AI.</p>
+        <div class="cover-meta">
+          <div class="cover-stat">
+            <span class="cover-stat-num">200+</span>
+            <span class="cover-stat-label">Clients</span>
+          </div>
+          <div class="cover-stat">
+            <span class="cover-stat-num">35+</span>
+            <span class="cover-stat-label">Countries</span>
+          </div>
+          <div class="cover-stat">
+            <span class="cover-stat-num">Top 3%</span>
+            <span class="cover-stat-label">Google Premier Partner</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ── 01 Logo ─────────────────────────────────────────────────── -->
+    <div class="container">
+      <section class="section" id="logo">
+        <div class="section-label">
+          <span class="section-num">01</span>
+          <div>
+            <h2 class="section-title">Logo</h2>
+            <p class="section-desc">The Deeploy mark pairs a wordmark in Avenir Black with a staircase of descending squares — a visual metaphor for structured deployment and forward momentum. Always use supplied SVG files.</p>
+          </div>
+        </div>
+
+        <div class="logo-grid">
+          <div class="logo-swatch logo-swatch-light">
+            <img src="../assets/logos/logo-primary.svg" alt="Deeploy primary logo">
+            <div>
+              <p class="logo-swatch-name">Primary</p>
+              <p class="logo-swatch-desc">Red mark + Navy wordmark. Default usage on white and light surfaces.</p>
+            </div>
+          </div>
+          <div class="logo-swatch logo-swatch-dark">
+            <img src="../assets/logos/logo-white.svg" alt="Deeploy white logo">
+            <div>
+              <p class="logo-swatch-name">Reversed</p>
+              <p class="logo-swatch-desc">Full white. For dark backgrounds, navy sections, photography overlays.</p>
+            </div>
+          </div>
+          <div class="logo-swatch logo-swatch-light">
+            <img src="../assets/logos/logo-black.svg" alt="Deeploy dark logo">
+            <div>
+              <p class="logo-swatch-name">Monochrome</p>
+              <p class="logo-swatch-desc">Blue King only. For print, stamps, and photocopies where color is unavailable.</p>
+            </div>
+          </div>
+          <div class="logo-swatch logo-swatch-dark" style="background: #1a3d52;">
+            <img src="../assets/logos/logo-white.svg" alt="Deeploy white logo on blue">
+            <div>
+              <p class="logo-swatch-name">On photography</p>
+              <p class="logo-swatch-desc">White version on cinematic photo overlays. Minimum 50% dark overlay on image.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mark variants -->
+        <div class="logo-mark-row">
+          <div class="logo-mark-swatch logo-swatch-light">
+            <img src="../assets/logos/mark.svg" alt="Deeploy mark">
+          </div>
+          <div class="logo-mark-swatch logo-swatch-dark">
+            <img src="../assets/logos/mark-white.svg" alt="Deeploy mark white">
+          </div>
+        </div>
+
+        <!-- Rules -->
+        <div class="logo-rules">
+          <div class="logo-rule-item">
+            <p class="logo-rule-head allow">Minimum sizes</p>
+            <p class="logo-rule-body">Wordmark: 120px wide digital, 30mm print. Mark: 40px digital, 10mm print.</p>
+          </div>
+          <div class="logo-rule-item">
+            <p class="logo-rule-head allow">Clear space</p>
+            <p class="logo-rule-body">Maintain clear space equal to the height of the square mark on all four sides.</p>
+          </div>
+          <div class="logo-rule-item">
+            <p class="logo-rule-head deny">Never distort</p>
+            <p class="logo-rule-body">Do not stretch, skew, rotate, or alter proportions. Always scale uniformly.</p>
+          </div>
+          <div class="logo-rule-item">
+            <p class="logo-rule-head deny">Never recolor</p>
+            <p class="logo-rule-body">Only approved variants: Primary, White, Monochrome. No custom colors or partial recoloring.</p>
+          </div>
+          <div class="logo-rule-item">
+            <p class="logo-rule-head deny">Never add effects</p>
+            <p class="logo-rule-body">No shadows, glows, outlines, or gradients. The SVG file is the source of truth.</p>
+          </div>
+          <div class="logo-rule-item">
+            <p class="logo-rule-head deny">No logo on red</p>
+            <p class="logo-rule-body">Never place the red primary logo on a red or pink background. Use white version instead.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ── 02 Color ────────────────────────────────────────────────── -->
+    <section class="section" id="color" style="padding-block: 0; border-top: 1px solid var(--color-separator);">
+      <div class="color-strips">
+
+        <div class="color-strip strip-red">
+          <div class="color-strip-swatch strip-red"></div>
+          <div class="color-strip-info">
+            <p class="color-strip-name">Deploy Red</p>
+            <p class="color-strip-hex">#d81d4d</p>
+            <p class="color-strip-values">RGB 216 · 29 · 77 &nbsp;|&nbsp; CMYK 0 · 87 · 64 · 15</p>
+          </div>
+          <div class="color-strip-usage">Primary accent. Mark, CTAs, active states. 10% of any composition maximum.</div>
+        </div>
+
+        <div class="color-strip strip-navy">
+          <div class="color-strip-swatch strip-navy"></div>
+          <div class="color-strip-info">
+            <p class="color-strip-name">Blue King</p>
+            <p class="color-strip-hex">#0e2d3f</p>
+            <p class="color-strip-values">RGB 14 · 45 · 63 &nbsp;|&nbsp; CMYK 78 · 29 · 0 · 75</p>
+          </div>
+          <div class="color-strip-usage">Primary text and dark backgrounds. Logo wordmark, headings, dark sections. 30% of compositions.</div>
+        </div>
+
+        <div class="color-strip strip-blue" style="background: #8BC9DB;">
+          <div class="color-strip-swatch" style="background: #8BC9DB;"></div>
+          <div class="color-strip-info">
+            <p class="color-strip-name" style="color: var(--color-navy);">Baby Blue</p>
+            <p class="color-strip-hex" style="color: var(--color-navy);">#8BC9DB</p>
+            <p class="color-strip-values" style="color: var(--color-text-2);">RGB 139 · 201 · 219 &nbsp;|&nbsp; CMYK 37 · 8 · 0 · 14</p>
+          </div>
+          <div class="color-strip-usage" style="color: var(--color-text-2);">Secondary accent. Data visualizations, supporting elements. Never as text on white (fails contrast).</div>
+        </div>
+
+        <div class="color-strip strip-offwht" style="background: #fafaf8; border-top: 1px solid var(--color-separator);">
+          <div class="color-strip-swatch" style="background: #fafaf8; border: 1px solid var(--color-separator);"></div>
+          <div class="color-strip-info">
+            <p class="color-strip-name">Off-White</p>
+            <p class="color-strip-hex" style="color: var(--color-text-2);">#fafaf8</p>
+            <p class="color-strip-values">Page background. Slightly warm to avoid clinical pure white.</p>
+          </div>
+          <div class="color-strip-usage">Default page background. Tinted toward Blue King for subconscious brand cohesion.</div>
+        </div>
+
+      </div>
+
+      <div class="container">
+        <div class="color-ratio">
+          <p class="color-ratio-label">Usage ratio in compositions</p>
+          <div class="color-ratio-bar">
+            <span class="ratio-white"></span>
+            <span class="ratio-navy"></span>
+            <span class="ratio-red"></span>
+          </div>
+          <div class="color-ratio-legend">
+            <div class="ratio-item"><span class="ratio-dot" style="background: var(--color-separator);"></span>60% White / Off-white</div>
+            <div class="ratio-item"><span class="ratio-dot" style="background: var(--color-navy);"></span>30% Blue King</div>
+            <div class="ratio-item"><span class="ratio-dot" style="background: var(--color-red);"></span>10% Deploy Red</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 03 Typography ───────────────────────────────────────────── -->
+    <div class="container">
+      <section class="section" id="type">
+        <div class="section-label">
+          <span class="section-num">03</span>
+          <div>
+            <h2 class="section-title">Typography</h2>
+            <p class="section-desc">Avenir — the single Deeploy typeface. A geometric humanist sans with wide weight range from Light 300 to Black 900. Load via Adobe Fonts for web delivery.</p>
+          </div>
+        </div>
+
+        <div class="type-specimen">
+          <p class="type-display">Human + AI<br>= Measurable Growth.</p>
+          <p class="type-alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 &amp; . , : ; ! ?</p>
+
+          <div class="type-scale">
+            <div class="type-scale-row">
+              <div class="type-scale-meta">
+                <p class="type-scale-token">--text-5xl</p>
+                <p class="type-scale-px">88px</p>
+              </div>
+              <div class="type-scale-sample" style="font-size: clamp(32px, 6vw, var(--text-5xl)); font-weight: 900; letter-spacing: -0.02em; line-height: 1.1;">Results.</div>
+            </div>
+            <div class="type-scale-row">
+              <div class="type-scale-meta">
+                <p class="type-scale-token">--text-4xl</p>
+                <p class="type-scale-px">64px</p>
+              </div>
+              <div class="type-scale-sample" style="font-size: clamp(28px, 5vw, var(--text-4xl)); font-weight: 900; letter-spacing: -0.02em; line-height: 1.1;">Top 3% Globally.</div>
+            </div>
+            <div class="type-scale-row">
+              <div class="type-scale-meta">
+                <p class="type-scale-token">--text-3xl</p>
+                <p class="type-scale-px">48px</p>
+              </div>
+              <div class="type-scale-sample" style="font-size: clamp(24px, 4vw, var(--text-3xl)); font-weight: 900; letter-spacing: -0.02em; line-height: 1.1;">200+ Clients.</div>
+            </div>
+            <div class="type-scale-row">
+              <div class="type-scale-meta">
+                <p class="type-scale-token">--text-2xl</p>
+                <p class="type-scale-px">36px</p>
+              </div>
+              <div class="type-scale-sample" style="font-size: var(--text-2xl); font-weight: 700; letter-spacing: -0.01em; line-height: 1.2;">AI-Forward Strategy</div>
+            </div>
+            <div class="type-scale-row">
+              <div class="type-scale-meta">
+                <p class="type-scale-token">--text-xl</p>
+                <p class="type-scale-px">28px</p>
+              </div>
+              <div class="type-scale-sample" style="font-size: var(--text-xl); font-weight: 700; line-height: 1.25;">Paid Media · SEO · Analytics</div>
+            </div>
+            <div class="type-scale-row">
+              <div class="type-scale-meta">
+                <p class="type-scale-token">--text-md</p>
+                <p class="type-scale-px">18px</p>
+              </div>
+              <div class="type-scale-sample" style="font-size: var(--text-md); font-weight: 400; line-height: 1.65; max-width: 60ch; color: var(--color-text-2);">We combine senior human strategists with AI-powered tools to deliver campaigns that are faster, more accurate, and built for ROI — not vanity metrics.</div>
+            </div>
+            <div class="type-scale-row">
+              <div class="type-scale-meta">
+                <p class="type-scale-token">--text-sm</p>
+                <p class="type-scale-px">14px</p>
+              </div>
+              <div class="type-scale-sample" style="font-size: var(--text-sm); font-weight: 400; color: var(--color-text-3);">Google Premier Partner · 15+ years · 35 countries</div>
+            </div>
+            <div class="type-scale-row">
+              <div class="type-scale-meta">
+                <p class="type-scale-token">--text-xs</p>
+                <p class="type-scale-px">12px</p>
+              </div>
+              <div class="type-scale-sample" style="font-size: var(--text-xs); font-weight: 500; text-transform: uppercase; letter-spacing: 0.16em; color: var(--color-text-3);">Labels · Metadata · Legal</div>
+            </div>
+          </div>
+
+          <div class="type-weights">
+            <div class="type-weight-item">
+              <p class="type-weight-name">Light · 300</p>
+              <p class="type-weight-sample" style="font-weight: 300;">Digital marketing powered by Human + AI.</p>
+            </div>
+            <div class="type-weight-item">
+              <p class="type-weight-name">Book · 400</p>
+              <p class="type-weight-sample" style="font-weight: 400;">Digital marketing powered by Human + AI.</p>
+            </div>
+            <div class="type-weight-item">
+              <p class="type-weight-name">Medium · 500</p>
+              <p class="type-weight-sample" style="font-weight: 500;">Digital marketing powered by Human + AI.</p>
+            </div>
+            <div class="type-weight-item">
+              <p class="type-weight-name">Heavy · 700</p>
+              <p class="type-weight-sample" style="font-weight: 700;">Digital marketing powered by Human + AI.</p>
+            </div>
+            <div class="type-weight-item">
+              <p class="type-weight-name">Black · 900</p>
+              <p class="type-weight-sample" style="font-weight: 900;">Digital marketing powered by Human + AI.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ── 04 Spacing ──────────────────────────────────────────────── -->
+    <div class="container">
+      <section class="section" id="space">
+        <div class="section-label">
+          <span class="section-num">04</span>
+          <div>
+            <h2 class="section-title">Space</h2>
+            <p class="section-desc">4pt base scale. White space is structural — breathing room communicates authority. Use <code style="font-size: 0.85em; background: var(--color-navy-tint); padding: 2px 6px;">gap</code> for sibling spacing, not margins.</p>
+          </div>
+        </div>
+
+        <div class="space-scale">
+          <div class="space-row">
+            <span class="space-token">--space-1</span>
+            <div class="space-bar-wrap"><div class="space-bar" style="width: 4px;"></div><span class="space-value">4px</span></div>
+          </div>
+          <div class="space-row">
+            <span class="space-token">--space-2</span>
+            <div class="space-bar-wrap"><div class="space-bar" style="width: 8px;"></div><span class="space-value">8px</span></div>
+          </div>
+          <div class="space-row">
+            <span class="space-token">--space-3</span>
+            <div class="space-bar-wrap"><div class="space-bar" style="width: 12px;"></div><span class="space-value">12px</span></div>
+          </div>
+          <div class="space-row">
+            <span class="space-token">--space-4</span>
+            <div class="space-bar-wrap"><div class="space-bar" style="width: 16px;"></div><span class="space-value">16px · default component padding</span></div>
+          </div>
+          <div class="space-row">
+            <span class="space-token">--space-6</span>
+            <div class="space-bar-wrap"><div class="space-bar" style="width: 24px;"></div><span class="space-value">24px · card padding</span></div>
+          </div>
+          <div class="space-row">
+            <span class="space-token">--space-8</span>
+            <div class="space-bar-wrap"><div class="space-bar" style="width: 32px;"></div><span class="space-value">32px · between related blocks</span></div>
+          </div>
+          <div class="space-row">
+            <span class="space-token">--space-12</span>
+            <div class="space-bar-wrap"><div class="space-bar" style="width: 48px;"></div><span class="space-value">48px · section internal margin</span></div>
+          </div>
+          <div class="space-row">
+            <span class="space-token">--space-16</span>
+            <div class="space-bar-wrap"><div class="space-bar" style="width: 64px;"></div><span class="space-value">64px · major section gap (mobile)</span></div>
+          </div>
+          <div class="space-row">
+            <span class="space-token">--space-24</span>
+            <div class="space-bar-wrap"><div class="space-bar" style="width: 96px;"></div><span class="space-value">96px · major section gap (desktop)</span></div>
+          </div>
+          <div class="space-row">
+            <span class="space-token">--space-32</span>
+            <div class="space-bar-wrap"><div class="space-bar" style="width: 128px;"></div><span class="space-value">128px · hero padding</span></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ── 05 Voice ────────────────────────────────────────────────── -->
+    <div class="container">
+      <section class="section" id="voice">
+        <div class="section-label">
+          <span class="section-num">05</span>
+          <div>
+            <h2 class="section-title">Voice</h2>
+            <p class="section-desc">Authoritative. Results-led. AI-forward. Lead with proof — numbers beat adjectives. Active voice, short sentences. B2B credibility before everything.</p>
+          </div>
+        </div>
+
+        <div class="voice-axes">
+          <div class="voice-axis">
+            <div class="voice-axis-labels"><span class="voice-axis-label">Formal</span><span class="voice-axis-label">Casual</span></div>
+            <div class="voice-axis-track"><div class="voice-axis-fill" style="width: 50%;"></div><div class="voice-axis-marker" style="left: 50%;"></div></div>
+          </div>
+          <div class="voice-axis">
+            <div class="voice-axis-labels"><span class="voice-axis-label">Rational</span><span class="voice-axis-label">Emotional</span></div>
+            <div class="voice-axis-track"><div class="voice-axis-fill" style="width: 30%;"></div><div class="voice-axis-marker" style="left: 30%;"></div></div>
+          </div>
+          <div class="voice-axis">
+            <div class="voice-axis-labels"><span class="voice-axis-label">Playful</span><span class="voice-axis-label">Serious</span></div>
+            <div class="voice-axis-track"><div class="voice-axis-fill" style="width: 30%;"></div><div class="voice-axis-marker" style="left: 30%;"></div></div>
+          </div>
+          <div class="voice-axis">
+            <div class="voice-axis-labels"><span class="voice-axis-label">Bold</span><span class="voice-axis-label">Subtle</span></div>
+            <div class="voice-axis-track"><div class="voice-axis-fill" style="width: 70%;"></div><div class="voice-axis-marker" style="left: 70%;"></div></div>
+          </div>
+          <div class="voice-axis">
+            <div class="voice-axis-labels"><span class="voice-axis-label">Traditional</span><span class="voice-axis-label">Innovative</span></div>
+            <div class="voice-axis-track"><div class="voice-axis-fill" style="width: 80%;"></div><div class="voice-axis-marker" style="left: 80%;"></div></div>
+          </div>
+        </div>
+
+        <div class="voice-pillars">
+          <div class="voice-pillar">
+            <p class="voice-pillar-pct">30%</p>
+            <p class="voice-pillar-name">Credential &amp; Authority</p>
+            <p class="voice-pillar-desc">Premier Partner, DELTA Method, 15+ years, 200+ clients, 35+ countries.</p>
+          </div>
+          <div class="voice-pillar">
+            <p class="voice-pillar-pct">25%</p>
+            <p class="voice-pillar-name">AI + Human Proof</p>
+            <p class="voice-pillar-desc">The hybrid model in action — results only possible with both.</p>
+          </div>
+          <div class="voice-pillar">
+            <p class="voice-pillar-pct">20%</p>
+            <p class="voice-pillar-name">Pain Agitation</p>
+            <p class="voice-pillar-desc">Unclear ROI, black-box reporting, falling behind on AI-driven changes.</p>
+          </div>
+          <div class="voice-pillar">
+            <p class="voice-pillar-pct">15%</p>
+            <p class="voice-pillar-name">Social Proof</p>
+            <p class="voice-pillar-desc">Client results, case studies, industries served.</p>
+          </div>
+          <div class="voice-pillar">
+            <p class="voice-pillar-pct">10%</p>
+            <p class="voice-pillar-name">Offer &amp; CTA</p>
+            <p class="voice-pillar-desc">Free strategy call. No-obligation. No long-term contracts.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ── 06 Digital & Social ─────────────────────────────────────── -->
+    <div class="container">
+      <section class="section" id="digital">
+        <div class="section-label">
+          <span class="section-num">06</span>
+          <div>
+            <h2 class="section-title">Digital &amp; Social</h2>
+            <p class="section-desc">Key format dimensions. Full specs including safe zones, composition rules, and platform notes at <code style="font-size: 0.85em; background: var(--color-navy-tint); padding: 2px 6px;">templates/social/specs.json</code>.</p>
+          </div>
+        </div>
+
+        <div class="format-grid">
+          <div class="format-card">
+            <p class="format-ratio">1:1</p>
+            <p class="format-platform">Instagram · Meta · LinkedIn</p>
+            <p class="format-dims">1080 × 1080 px</p>
+            <p class="format-note">Highest versatility. Works across all major feed placements.</p>
+          </div>
+          <div class="format-card">
+            <p class="format-ratio">4:5</p>
+            <p class="format-platform">Instagram Feed</p>
+            <p class="format-dims">1080 × 1350 px</p>
+            <p class="format-note">Maximum feed real estate on mobile. Preferred portrait format.</p>
+          </div>
+          <div class="format-card">
+            <p class="format-ratio">9:16</p>
+            <p class="format-platform">Stories · Reels · TikTok</p>
+            <p class="format-dims">1080 × 1920 px</p>
+            <p class="format-note">Keep key content in center 1080 × 1420 band.</p>
+          </div>
+          <div class="format-card">
+            <p class="format-ratio">1.91:1</p>
+            <p class="format-platform">LinkedIn · Facebook</p>
+            <p class="format-dims">1200 × 627 px</p>
+            <p class="format-note">Flagship sponsored format. Logo left, headline dominant.</p>
+          </div>
+          <div class="format-card">
+            <p class="format-ratio">16:9</p>
+            <p class="format-platform">YouTube · Twitter/X</p>
+            <p class="format-dims">1280 × 720 px</p>
+            <p class="format-note">Thumbnails legible at 196 × 110px. High contrast essential.</p>
+          </div>
+          <div class="format-card">
+            <p class="format-ratio">6:5</p>
+            <p class="format-platform">Google Display</p>
+            <p class="format-dims">300 × 250 px</p>
+            <p class="format-note">Highest reach GDN unit. Always produce alongside other formats.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="container">
+    <div class="footer">
+      <img src="../assets/logos/logo-primary.svg" alt="Deeploy" class="footer-logo">
+      <p class="footer-text">Deeploy Brand System v1.0 · 2026 · brand.deeploy.co</p>
+    </div>
+  </footer>
+
+</body>
+</html>

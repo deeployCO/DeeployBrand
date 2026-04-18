@@ -1,0 +1,67 @@
+{
+  "meta": {
+    "brand": "Deeploy",
+    "version": "1.0.0",
+    "updated": "2026-04-17"
+  },
+  "platforms": {
+    "instagram": {
+      "feed-square":     { "w": 1080, "h": 1080, "ratio": "1:1",    "safe-zone": 60,  "notes": "Primary feed format. Most versatile." },
+      "feed-portrait":   { "w": 1080, "h": 1350, "ratio": "4:5",    "safe-zone": 60,  "notes": "Best for feed real estate. Preferred over square." },
+      "story":           { "w": 1080, "h": 1920, "ratio": "9:16",   "safe-zone": 250, "notes": "Keep key content in middle 1080×1420 band (top+bottom 250px covered by UI)." },
+      "reels-cover":     { "w": 1080, "h": 1920, "ratio": "9:16",   "safe-zone": 250, "notes": "Same safe zone as story." }
+    },
+    "linkedin": {
+      "single-image":    { "w": 1200, "h": 627,  "ratio": "1.91:1", "safe-zone": 40,  "notes": "Standard sponsored/organic. Flagship LinkedIn format." },
+      "square":          { "w": 1200, "h": 1200, "ratio": "1:1",    "safe-zone": 40,  "notes": "Higher engagement in feed." },
+      "story":           { "w": 1080, "h": 1920, "ratio": "9:16",   "safe-zone": 250, "notes": "LinkedIn stories." },
+      "thought-leader":  { "w": 1200, "h": 1200, "ratio": "1:1",    "safe-zone": 40,  "notes": "Organic profile content. Use real person photo." },
+      "carousel-card":   { "w": 1080, "h": 1080, "ratio": "1:1",    "safe-zone": 40,  "notes": "Each card in a document carousel." }
+    },
+    "meta": {
+      "feed-square":     { "w": 1080, "h": 1080, "ratio": "1:1",    "safe-zone": 60,  "notes": "Facebook + Instagram feed." },
+      "feed-landscape":  { "w": 1200, "h": 628,  "ratio": "1.91:1", "safe-zone": 40,  "notes": "Facebook feed, right column." },
+      "story":           { "w": 1080, "h": 1920, "ratio": "9:16",   "safe-zone": 250, "notes": "Facebook + Instagram stories + Reels." },
+      "right-column":    { "w": 1200, "h": 628,  "ratio": "1.91:1", "safe-zone": 40,  "notes": "Facebook desktop right column." }
+    },
+    "google-display": {
+      "medium-rectangle":  { "w": 300,  "h": 250,  "ratio": "6:5",    "safe-zone": 10, "notes": "Highest reach. Always produce this one." },
+      "large-rectangle":   { "w": 336,  "h": 280,  "ratio": "6:5",    "safe-zone": 10, "notes": "Slightly larger variant." },
+      "leaderboard":       { "w": 728,  "h": 90,   "ratio": "8.09:1", "safe-zone": 5,  "notes": "Top of page placement. Logo + headline only." },
+      "half-page":         { "w": 300,  "h": 600,  "ratio": "1:2",    "safe-zone": 10, "notes": "High impact, premium placement." },
+      "wide-skyscraper":   { "w": 160,  "h": 600,  "ratio": "4:15",   "safe-zone": 5,  "notes": "Sidebar placement. Very vertical." },
+      "billboard":         { "w": 970,  "h": 250,  "ratio": "3.88:1", "safe-zone": 10, "notes": "Large desktop banner." },
+      "responsive":        { "w": "varies", "h": "varies", "notes": "Provide headline (30ch max), description (90ch max), logo, and hero image. Google assembles." }
+    },
+    "youtube": {
+      "thumbnail":       { "w": 1280, "h": 720,  "ratio": "16:9",   "safe-zone": 40, "notes": "Must be legible at 196×110px. Bold text, high contrast." },
+      "channel-art":     { "w": 2560, "h": 1440, "ratio": "16:9",   "safe-zone": 420, "notes": "Only center 1546×423 shows on all devices." },
+      "bumper":          { "w": 1920, "h": 1080, "ratio": "16:9",   "safe-zone": 40, "notes": "6-second non-skippable. One message only." }
+    },
+    "twitter-x": {
+      "card":            { "w": 1200, "h": 675,  "ratio": "16:9",   "safe-zone": 40, "notes": "Standard post image." },
+      "square":          { "w": 1200, "h": 1200, "ratio": "1:1",    "safe-zone": 40, "notes": "Square feed image." }
+    },
+    "tiktok": {
+      "video-cover":     { "w": 1080, "h": 1920, "ratio": "9:16",   "safe-zone": 300, "notes": "Keep text out of top 150px and bottom 300px (UI overlap)." }
+    }
+  },
+  "composition": {
+    "logo-placement": "Top-left or bottom-left. Never centered. Always use logo-white.svg on dark, logo-primary.svg on light.",
+    "headline-style": "Avenir Black. White on dark backgrounds, Navy (#0e2d3f) on light. Max 8 words per headline.",
+    "stat-callout": "Large number in Avenir Black, Deploy Red (#d81d4d). Supporting label in Avenir Book, white or navy.",
+    "background-options": [
+      "White/off-white — use logo-primary.svg",
+      "Navy (#0e2d3f) — use logo-white.svg",
+      "Photography with dark overlay at 50% — use logo-white.svg"
+    ],
+    "forbidden": [
+      "Deploy Red as full background",
+      "Purple, cyan, or neon accents",
+      "Gradient text",
+      "Cheesy stock photography",
+      "Centered logo placement",
+      "More than 3 fonts or weights in one asset"
+    ]
+  }
+}

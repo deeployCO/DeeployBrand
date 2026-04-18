@@ -1,0 +1,40 @@
+{
+  "$schema": "https://deeploy.co/brand/tokens/schema/v1",
+  "meta": {
+    "brand": "Deeploy",
+    "version": "1.0.0",
+    "updated": "2026-04-17"
+  },
+  "spacing": {
+    "base": "4px",
+    "scale": {
+      "1":  { "value": "4px",   "rem": "0.25rem",  "usage": "Icon internal padding, fine-grain nudges" },
+      "2":  { "value": "8px",   "rem": "0.5rem",   "usage": "Tight component gaps (icon-to-label)" },
+      "3":  { "value": "12px",  "rem": "0.75rem",  "usage": "Input padding, tag gaps" },
+      "4":  { "value": "16px",  "rem": "1rem",     "usage": "Default component padding" },
+      "6":  { "value": "24px",  "rem": "1.5rem",   "usage": "Card padding, section internal spacing" },
+      "8":  { "value": "32px",  "rem": "2rem",     "usage": "Between related blocks" },
+      "12": { "value": "48px",  "rem": "3rem",     "usage": "Section internal margin" },
+      "16": { "value": "64px",  "rem": "4rem",     "usage": "Between major sections (mobile)" },
+      "24": { "value": "96px",  "rem": "6rem",     "usage": "Between major sections (desktop)" },
+      "32": { "value": "128px", "rem": "8rem",     "usage": "Hero padding, large section gaps" },
+      "40": { "value": "160px", "rem": "10rem",    "usage": "Cover/landing hero breathing room" }
+    },
+    "grid": {
+      "columns": 12,
+      "gutter": "24px",
+      "margin": "clamp(24px, 5vw, 96px)",
+      "max-content-width": "1200px",
+      "max-text-width": "720px"
+    },
+    "radii": {
+      "none":  "0px",
+      "sm":    "4px",
+      "md":    "8px",
+      "lg":    "12px",
+      "xl":    "16px",
+      "full":  "9999px",
+      "note": "Use sparingly. Prefer right angles for brand-aligned elements. Avenir's character is geometric, not rounded."
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://deeploy.co/brand/tokens/schema/v1",
+  "meta": {
+    "brand": "Deeploy",
+    "version": "1.0.0",
+    "updated": "2026-04-17",
+    "source": "SVG master files (Adobe Illustrator 30.3.0)"
+  },
+  "color": {
+    "red": {
+      "value": "#d81d4d",
+      "name": "Deploy Red",
+      "rgb": "rgb(216, 29, 77)",
+      "cmyk": "cmyk(0%, 87%, 64%, 15%)",
+      "oklch": "oklch(48% 0.22 4)",
+      "usage": "Primary brand accent. Logo mark, CTAs, active states. Use sparingly — maximum 10% of any composition."
+    },
+    "navy": {
+      "value": "#0e2d3f",
+      "name": "Blue King",
+      "rgb": "rgb(14, 45, 63)",
+      "cmyk": "cmyk(78%, 29%, 0%, 75%)",
+      "oklch": "oklch(19% 0.055 222)",
+      "usage": "Primary text and dark backgrounds. Logo wordmark, body copy, dark sections."
+    },
+    "blue": {
+      "value": "#8BC9DB",
+      "name": "Baby Blue",
+      "rgb": "rgb(139, 201, 219)",
+      "cmyk": "cmyk(37%, 8%, 0%, 14%)",
+      "oklch": "oklch(78% 0.072 211)",
+      "usage": "Secondary accent. Data visualizations, supporting elements, secondary CTAs. Never as text on white."
+    },
+    "white": {
+      "value": "#ffffff",
+      "name": "White",
+      "rgb": "rgb(255, 255, 255)",
+      "usage": "Logo reversed, text on dark backgrounds."
+    },
+    "background": {
+      "value": "#fafaf8",
+      "name": "Off-white",
+      "oklch": "oklch(99% 0.004 215)",
+      "usage": "Default page background. Slightly warm to avoid clinical pure white."
+    },
+    "surface": {
+      "value": "#ffffff",
+      "name": "Surface white",
+      "usage": "Card surfaces, modals, elevated content areas."
+    },
+    "text-primary": {
+      "value": "#0e2d3f",
+      "name": "Text primary",
+      "usage": "Body copy, headings. Identical to Blue King."
+    },
+    "text-secondary": {
+      "value": "#4a6878",
+      "name": "Text secondary",
+      "oklch": "oklch(44% 0.045 222)",
+      "usage": "Supporting text, captions, metadata. Derived from Blue King at reduced lightness."
+    },
+    "text-tertiary": {
+      "value": "#7a9aaa",
+      "name": "Text tertiary",
+      "oklch": "oklch(63% 0.04 222)",
+      "usage": "Placeholder text, disabled states, timestamps."
+    },
+    "separator": {
+      "value": "#dce6ea",
+      "name": "Separator",
+      "oklch": "oklch(91% 0.02 215)",
+      "usage": "Horizontal rules, borders, dividers."
+    },
+    "red-tint": {
+      "value": "#fdf0f3",
+      "name": "Red tint",
+      "oklch": "oklch(96% 0.015 4)",
+      "usage": "Hover backgrounds on red-adjacent elements. Alert/error surfaces."
+    },
+    "navy-tint": {
+      "value": "#eef2f5",
+      "name": "Navy tint",
+      "oklch": "oklch(95% 0.015 215)",
+      "usage": "Code blocks, subtle backgrounds, inactive states."
+    }
+  }
+}

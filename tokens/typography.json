@@ -1,0 +1,60 @@
+{
+  "$schema": "https://deeploy.co/brand/tokens/schema/v1",
+  "meta": {
+    "brand": "Deeploy",
+    "version": "1.0.0",
+    "updated": "2026-04-17"
+  },
+  "typography": {
+    "family": {
+      "primary": {
+        "name": "Avenir",
+        "stack": "'Avenir Next', 'Avenir', 'Nunito', system-ui, sans-serif",
+        "license": "Linotype/Monotype — requires commercial license for web embedding. Load via Adobe Fonts (TypeKit) for web delivery.",
+        "fallback-web": "Nunito (Google Fonts) — closest open-source alternative",
+        "weights-available": [300, 400, 500, 700, 900],
+        "weight-names": {
+          "300": "Light",
+          "400": "Book",
+          "500": "Medium",
+          "700": "Heavy",
+          "900": "Black"
+        }
+      }
+    },
+    "scale": {
+      "xs":   { "size": "0.75rem",  "px": 12, "usage": "Legal, micro-labels, metadata" },
+      "sm":   { "size": "0.875rem", "px": 14, "usage": "Captions, secondary labels, timestamps" },
+      "base": { "size": "1rem",     "px": 16, "usage": "Body copy — default" },
+      "md":   { "size": "1.125rem", "px": 18, "usage": "Lead paragraphs, large body" },
+      "lg":   { "size": "1.375rem", "px": 22, "usage": "H4, small section headings" },
+      "xl":   { "size": "1.75rem",  "px": 28, "usage": "H3, subsection titles" },
+      "2xl":  { "size": "2.25rem",  "px": 36, "usage": "H2, section headings" },
+      "3xl":  { "size": "3rem",     "px": 48, "usage": "H1, page titles" },
+      "4xl":  { "size": "4rem",     "px": 64, "usage": "Display, hero headings" },
+      "5xl":  { "size": "5.5rem",   "px": 88, "usage": "Hero display, cover text" },
+      "6xl":  { "size": "8rem",     "px": 128, "usage": "Oversized decorative numerals, brand moments" }
+    },
+    "line-height": {
+      "tight":   1.1,
+      "snug":    1.25,
+      "normal":  1.5,
+      "relaxed": 1.65,
+      "loose":   1.8,
+      "note": "Headings use tight/snug. Body uses normal. Light text on dark adds 0.1 to base value."
+    },
+    "letter-spacing": {
+      "tight":  "-0.02em",
+      "normal": "0em",
+      "wide":   "0.04em",
+      "wider":  "0.08em",
+      "widest": "0.16em",
+      "note": "Large headings (>48px) use tight. Uppercase labels use wider/widest."
+    },
+    "rules": {
+      "max-line-length": "68ch",
+      "uppercase-restriction": "Short labels and headings only. Never body copy.",
+      "weight-hierarchy": "Black (900) for display, Heavy (700) for headings, Book (400) for body, Light (300) for captions and decorative numerals"
+    }
+  }
+}
