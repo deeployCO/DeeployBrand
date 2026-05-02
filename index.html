@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deeploy — Design System</title>
+<meta name="description" content="Deeploy Design System. Brand book, tokens, and foundations for Human + AI digital marketing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens/tokens.css">
+<style>
+  /* ─── Layout base ─────────────────────────────────────────────── */
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-primary);
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  .container {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: var(--space-margin);
+  }
+
+  /* ─── Navigation ──────────────────────────────────────────────── */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: var(--z-overlay);
+    padding: var(--space-4) var(--space-margin);
+    display: flex; align-items: center; justify-content: space-between;
+    background: oklch(99% 0.004 215 / 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-separator);
+  }
+  .nav-mark { height: 28px; width: auto; display: block; }
+  .nav-meta {
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-3);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+  }
+
+  /* ─── Cover ───────────────────────────────────────────────────── */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 96px;
+    padding-bottom: var(--space-24);
+  }
+  .cover-eyebrow {
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-text-3);
+    margin-bottom: var(--space-12);
+  }
+  .cover-title {
+    font-size: clamp(var(--text-3xl), 7vw, var(--text-5xl));
+    font-weight: var(--font-weight-black);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-text);
+    max-width: 12ch;
+    margin-bottom: var(--space-6);
+  }
+  .cover-rule {
+    width: 48px; height: 3px;
+    background: var(--color-red);
+    margin-bottom: var(--space-8);
+  }
+  .cover-tagline {
+    font-size: clamp(var(--text-md), 2vw, var(--text-lg));
+    font-weight: var(--font-weight-light);
+    color: var(--color-text-2);
+    max-width: 640px;
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+  }
+  .cover-meta {
+    margin-top: var(--space-24);
+    display: flex; gap: var(--space-12); flex-wrap: wrap;
+  }
+  .cover-stat { display: flex; flex-direction: column; gap: var(--space-1); }
+  .cover-stat-num {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-black);
+    color: var(--color-text);
+    letter-spacing: var(--tracking-tight);
+    line-height: 1;
+  }
+  .cover-stat-label {
+    font-size: var(--text-xs);
+    color: var(--color-text-3);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* ─── Section base ────────────────────────────────────────────── */
+  .section {
+    padding-block: var(--space-section);
+    border-top: 1px solid var(--color-separator);
+  }
+  .section-label {
+    display: flex; align-items: baseline; gap: var(--space-6);
+    margin-bottom: var(--space-12);
+  }
+  .section-num {
+    font-size: var(--text-4xl);
+    font-weight: var(--font-weight-light);
+    color: var(--color-separator);
+    line-height: 1;
+    letter-spacing: var(--tracking-tight);
+    user-select: none;
+  }
+  .section-title {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-tight);
+  }
+  .section-desc {
+    font-size: var(--text-md);
+    color: var(--color-text-2);
+    max-width: var(--measure);
+    line-height: var(--leading-relaxed);
+    margin-top: var(--space-4);
+  }
+
+  /* ─── Cards ───────────────────────────────────────────────────── */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+  @media (max-width: 820px) { .cards { grid-template-columns: 1fr; } }
+
+  .card {
+    position: relative;
+    display: flex; flex-direction: column;
+    padding: var(--space-12);
+    min-height: 380px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-separator);
+    transition: transform var(--duration-base) var(--ease-out-expo),
+                box-shadow var(--duration-base) var(--ease-out-expo),
+                border-color var(--duration-base) var(--ease-out-expo);
+    overflow: hidden;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-text-3);
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 3px;
+    background: var(--color-red);
+    transition: width var(--duration-slow) var(--ease-out-expo);
+  }
+  .card:hover::before { width: 100%; }
+
+  .card-num {
+    position: absolute;
+    top: var(--space-6); right: var(--space-12);
+    font-size: var(--text-xs);
+    color: var(--color-text-3);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    font-weight: var(--font-weight-medium);
+  }
+  .card-eyebrow {
+    font-size: var(--text-xs);
+    color: var(--color-red);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    font-weight: var(--font-weight-heavy);
+    margin-bottom: var(--space-4);
+  }
+  .card-title {
+    font-size: clamp(var(--text-xl), 3vw, var(--text-2xl));
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-tight);
+    color: var(--color-text);
+    margin-bottom: var(--space-4);
+  }
+  .card-desc {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-2);
+    margin-bottom: var(--space-8);
+    max-width: 44ch;
+  }
+  .card-list {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4);
+    margin-bottom: var(--space-12);
+  }
+  .card-list li {
+    font-size: var(--text-sm);
+    color: var(--color-text-2);
+    font-weight: var(--font-weight-medium);
+  }
+  .card-list li + li::before {
+    content: "·";
+    color: var(--color-red);
+    margin-right: var(--space-3);
+    font-weight: var(--font-weight-heavy);
+  }
+  .card-cta {
+    margin-top: auto;
+    align-self: flex-start;
+    display: inline-flex; align-items: center; gap: var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-heavy);
+    color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    padding-bottom: var(--space-1);
+    border-bottom: 2px solid var(--color-text);
+    transition: color var(--duration-base) var(--ease-out-expo),
+                border-color var(--duration-base) var(--ease-out-expo);
+  }
+  .card:hover .card-cta {
+    color: var(--color-red);
+    border-bottom-color: var(--color-red);
+  }
+  .card-cta-arrow {
+    transition: transform var(--duration-base) var(--ease-out-expo);
+  }
+  .card:hover .card-cta-arrow { transform: translateX(4px); }
+
+  /* ─── Quick-start section ─────────────────────────────────────── */
+  .quick {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    margin-top: var(--space-12);
+  }
+  @media (max-width: 820px) { .quick { grid-template-columns: 1fr; } }
+  .quick-card {
+    display: flex; flex-direction: column;
+    padding: var(--space-8);
+    background: var(--color-surface);
+    border: 1px solid var(--color-separator);
+    transition: background var(--duration-base) var(--ease-out-expo),
+                border-color var(--duration-base) var(--ease-out-expo);
+  }
+  .quick-card:hover {
+    background: var(--color-navy-tint);
+    border-color: var(--color-text-3);
+  }
+  .quick-eyebrow {
+    font-size: var(--text-xs);
+    color: var(--color-red);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    font-weight: var(--font-weight-heavy);
+    margin-bottom: var(--space-3);
+  }
+  .quick-title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-heavy);
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+  }
+  .quick-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-2);
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ─── Use snippet ─────────────────────────────────────────────── */
+  .snippet {
+    margin-top: var(--space-12);
+    padding: var(--space-12);
+    background: var(--color-navy);
+    color: var(--color-white);
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    overflow-x: auto;
+  }
+  .snippet .c { color: oklch(70% 0.04 215); }
+  .snippet .k { color: var(--color-blue); }
+  .snippet .v { color: var(--color-red); }
+
+  /* ─── Footer ──────────────────────────────────────────────────── */
+  .foot {
+    border-top: 1px solid var(--color-separator);
+    padding-block: var(--space-12);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--color-text-3);
+  }
+  .foot-links { display: flex; gap: var(--space-6); flex-wrap: wrap; }
+  .foot a {
+    color: var(--color-text-2);
+    border-bottom: 1px solid transparent;
+    transition: color var(--duration-fast) var(--ease-out-expo),
+                border-color var(--duration-fast) var(--ease-out-expo);
+  }
+  .foot a:hover { color: var(--color-red); border-bottom-color: var(--color-red); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <a href="./" aria-label="Deeploy home">
+    <img src="assets/logos/logo-primary.svg" alt="Deeploy" class="nav-mark">
+  </a>
+  <span class="nav-meta">Design System · v1.0</span>
+</header>
+
+<main class="container">
+
+  <!-- COVER -->
+  <section class="cover">
+    <div class="cover-eyebrow">Deeploy Brand · v1.0</div>
+    <h1 class="cover-title">The Deeploy Design System.</h1>
+    <div class="cover-rule"></div>
+    <p class="cover-tagline">
+      Brand book, tokens, and foundations for digital marketing powered by Human + AI.
+      Top 3% Google Partner. Every dollar tracked.
+    </p>
+    <div class="cover-meta">
+      <div class="cover-stat">
+        <div class="cover-stat-num">200+</div>
+        <div class="cover-stat-label">Clients</div>
+      </div>
+      <div class="cover-stat">
+        <div class="cover-stat-num">35+</div>
+        <div class="cover-stat-label">Countries</div>
+      </div>
+      <div class="cover-stat">
+        <div class="cover-stat-num">Top 3%</div>
+        <div class="cover-stat-label">Google Partner</div>
+      </div>
+      <div class="cover-stat">
+        <div class="cover-stat-num">v1.0</div>
+        <div class="cover-stat-label">System version</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TWO CARDS -->
+  <section class="section">
+    <div class="section-label">
+      <span class="section-num">01</span>
+      <div>
+        <h2 class="section-title">Open the system.</h2>
+        <p class="section-desc">
+          Two surfaces. The brand book — logo, color, typography, voice, social
+          specs. And the foundations — tokens and component primitives ready to
+          drop into product or marketing code.
+        </p>
+      </div>
+    </div>
+
+    <div class="cards">
+
+      <a class="card" href="brand/">
+        <span class="card-num">01 / Brand</span>
+        <div class="card-eyebrow">Brand Book</div>
+        <h3 class="card-title">Brand System.</h3>
+        <p class="card-desc">
+          Logo lockups, color palette, typography, voice, spacing, and digital
+          specs. The expressive surface that shows up in every campaign.
+        </p>
+        <ul class="card-list">
+          <li>Logo</li><li>Color</li><li>Typography</li><li>Voice</li><li>Social</li>
+        </ul>
+        <span class="card-cta">
+          Open brand system
+          <span class="card-cta-arrow">→</span>
+        </span>
+      </a>
+
+      <a class="card" href="brand/foundations.html">
+        <span class="card-num">02 / Foundations</span>
+        <div class="card-eyebrow">Component Primitives</div>
+        <h3 class="card-title">Foundations.</h3>
+        <p class="card-desc">
+          Design tokens and base components — buttons, inputs, stats, tables.
+          Wrap any section in <code>.db</code> to activate the baseline.
+        </p>
+        <ul class="card-list">
+          <li>Tokens</li><li>Buttons</li><li>Forms</li><li>Stats</li><li>Tables</li>
+        </ul>
+        <span class="card-cta">
+          Open foundations
+          <span class="card-cta-arrow">→</span>
+        </span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- QUICK-START -->
+  <section class="section">
+    <div class="section-label">
+      <span class="section-num">02</span>
+      <div>
+        <h2 class="section-title">Use the system.</h2>
+        <p class="section-desc">
+          Import the tokens once and the entire palette, type scale, spacing,
+          radii, and motion tokens become CSS variables across your project.
+        </p>
+      </div>
+    </div>
+
+    <div class="quick">
+      <a class="quick-card" href="tokens/tokens.css">
+        <div class="quick-eyebrow">Tokens</div>
+        <h4 class="quick-title">tokens.css →</h4>
+        <p class="quick-desc">Raw CSS custom properties. Color, type, spacing, motion. Drop in any web project.</p>
+      </a>
+      <a class="quick-card" href="brand/foundations.html">
+        <div class="quick-eyebrow">Foundations</div>
+        <h4 class="quick-title">.db namespace →</h4>
+        <p class="quick-desc">Tokens plus baseline components — buttons, forms, stats — wrapped under one class.</p>
+      </a>
+      <a class="quick-card" href="https://github.com/deeployCO/DeeployBrand">
+        <div class="quick-eyebrow">Source</div>
+        <h4 class="quick-title">GitHub →</h4>
+        <p class="quick-desc">Tokens, logos, brand book, social and marketing template specs.</p>
+      </a>
+    </div>
+
+    <pre class="snippet"><span class="c">/* Import tokens — palette, type, spacing, motion. */</span>
+<span class="k">@import url</span>(<span class="v">'./tokens/tokens.css'</span>);
+
+<span class="c">/* Or full component baseline (tokens + .db primitives) */</span>
+<span class="k">@import url</span>(<span class="v">'./tokens/foundations.css'</span>);</pre>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div>Deeploy — Digital marketing powered by Human + AI</div>
+    <div class="foot-links">
+      <a href="brand/">Brand System</a>
+      <a href="brand/foundations.html">Foundations</a>
+      <a href="https://deeploy.ca">deeploy.ca</a>
+      <a href="https://github.com/deeployCO/DeeployBrand">GitHub</a>
+    </div>
+  </footer>
+
+</main>
+
+</body>
+</html>
