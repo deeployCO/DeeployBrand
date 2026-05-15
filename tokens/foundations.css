@@ -14,8 +14,8 @@
   --db-ff: 'Avenir Next', 'Avenir', 'Nunito', system-ui, sans-serif;
   --db-ff-mono: ui-monospace, 'SF Mono', Menlo, monospace;
 
-  --db-text-xs:   0.75rem;    /* 12 */
-  --db-text-sm:   0.8125rem;  /* 13 */
+  --db-text-xs:   0.8125rem;  /* 13 */
+  --db-text-sm:   0.875rem;   /* 14 */
   --db-text-base: 0.9375rem;  /* 15 */
   --db-text-md:   1rem;       /* 16 */
   --db-text-lg:   1.125rem;   /* 18 */
@@ -204,11 +204,11 @@
   color:       var(--db-text-muted);
 }
 
-/* Eyebrow — 11px uppercase label above a headline */
+/* Eyebrow — 12px uppercase label above a headline */
 .db .eyebrow {
   font-family:     var(--db-ff);
   font-weight:     500;
-  font-size:       11px;
+  font-size:       12px;
   letter-spacing:  0.14em;
   text-transform:  uppercase;
   color:           var(--db-text-subtle);
@@ -453,7 +453,7 @@
   border-radius: var(--db-r-sm);
   font-family:  var(--db-ff);
   font-weight:  500;
-  font-size:    11px;
+  font-size:    12px;
   letter-spacing: 0.02em;
   background:   var(--db-bg-sunk);
   color:        var(--db-text-muted);

@@ -88,8 +88,8 @@ font-family: 'Avenir Next', 'Avenir', 'Nunito', system-ui, sans-serif;
 
 **Type scale:**
 ```
---text-xs:   0.75rem   (12px)   labels, legal
---text-sm:   0.875rem  (14px)   captions
+--text-xs:   0.8125rem (13px)   labels, legal
+--text-sm:   0.9375rem (15px)   captions
 --text-base: 1rem      (16px)   body
 --text-md:   1.125rem  (18px)   lead paragraph
 --text-lg:   1.375rem  (22px)   H4

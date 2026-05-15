@@ -3,7 +3,7 @@
   "meta": {
     "brand": "Deeploy",
     "version": "1.0.0",
-    "updated": "2026-04-17"
+    "updated": "2026-05-15"
   },
   "typography": {
     "family": {
@@ -23,8 +23,8 @@
       }
     },
     "scale": {
-      "xs":   { "size": "0.75rem",  "px": 12, "usage": "Legal, micro-labels, metadata" },
-      "sm":   { "size": "0.875rem", "px": 14, "usage": "Captions, secondary labels, timestamps" },
+      "xs":   { "size": "0.8125rem", "px": 13, "usage": "Legal, micro-labels, metadata" },
+      "sm":   { "size": "0.9375rem", "px": 15, "usage": "Captions, secondary labels, timestamps" },
       "base": { "size": "1rem",     "px": 16, "usage": "Body copy — default" },
       "md":   { "size": "1.125rem", "px": 18, "usage": "Lead paragraphs, large body" },
       "lg":   { "size": "1.375rem", "px": 22, "usage": "H4, small section headings" },
